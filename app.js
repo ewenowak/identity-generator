@@ -11,19 +11,20 @@ function randChoice(arr) {
 
 for (i=0; i<21; i++) {
     const obj = {};
-    obj.genders = randChoice(genders);
-    if (obj.genders === 'F') {
-        obj.femaleNames = randChoice(femaleNames);
-    } else if (obj.genders === 'M') {
-        obj.maleNames = randChoice(maleNames);
+    obj.gender = randChoice(genders);
+    if (obj.gender === 'F') {
+        obj.firstName = randChoice(femaleNames);
+    } else if (obj.gender === 'M') {
+        obj.firstName = randChoice(maleNames);
     }
 
-    const randLastName = () => {
+    const randLastName = () => 
         lastNames[Math.floor(Math.random() * lastNames.length)];
-    }
-    obj.lastNames = randLastName(lastNames);
+    
+    obj.lastName = randLastName(lastNames);
     obj.age = Math.floor(Math.random() * 51 + 18);
-	people.push(obj); 
+	
+    people.push(obj); 
 }
 
 fs.writeFile('people.json', JSON.stringify(people), err => {
